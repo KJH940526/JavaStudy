@@ -1,6 +1,4 @@
-package dataS1;
-
-import java.util.Iterator;
+package dataS2;
 
 public interface List<E> {
 	
@@ -16,6 +14,6 @@ public interface List<E> {
 	
 	int size();						//리스트의 항목 수를 반환
 		
-	Iterator<E> iterator();			//
+
 }
 
