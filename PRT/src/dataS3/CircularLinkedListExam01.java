@@ -1,11 +1,12 @@
-package dataS2;
+package dataS3;
 
 import java.util.Iterator;
 
-public class LinkedListExam01 {
+
+public class CircularLinkedListExam01 {
+
 	public static void main(String[] args) {
-		
-		List<Integer> list = new LinkedList<>();
+		List<Integer> list = new CircularLinkedList<>();
 		
 		list.add(10);
 		list.add(20);
@@ -13,6 +14,7 @@ public class LinkedListExam01 {
 		list.add(40);
 		list.add(50);
 		
+		System.out.println("원형");
 		System.out.println("현재 데이터 수: " + list.size());
 		
 		for(int i=0; i<list.size(); i++) {
@@ -27,7 +29,7 @@ public class LinkedListExam01 {
 		}
 		System.out.println();
 		System.out.println("Remove-----------------------------");
-		list.remove(3);
+		list.remove(5);
 		System.out.println("현재 데이터 수: " + list.size());
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(i + "번째 데이터: " + list.get(i));
@@ -39,6 +41,7 @@ public class LinkedListExam01 {
 		
 		System.out.println("---------------------------------");
 		Iterator<Integer> it = list.iterator();
+		
 		while(it.hasNext()) {
 			int i = it.next();
 			System.out.println(i);
@@ -46,11 +49,12 @@ public class LinkedListExam01 {
 		
 		System.out.println();
 		
-		for(int i : list) {
-			System.out.println(i);
-		}
+//		for(int i : list) {
+//			System.out.println(i);
+//		}
 		
 	}
-	
 
 }
+
+

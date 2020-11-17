@@ -56,18 +56,16 @@ public class ArrayListExam01 {
 	
 	System.out.println("---------------------------------");
 	Iterator<Integer> it = list.iterator();
-	
 	while(it.hasNext()) {
-		System.out.println("µé¾î°¨");
-
-//		System.out.println(i);
+		int i = it.next();
+		System.out.println(i);
 	}
+	
 	System.out.println();
 	
-//	for(int i : list) {
-//		System.out.println(i);
-//	}
-	
+	for(int i : list) {
+		System.out.println(i);
+	}
 	
 	}
 }

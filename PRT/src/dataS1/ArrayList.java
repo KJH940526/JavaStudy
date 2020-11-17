@@ -1,6 +1,7 @@
 package dataS1;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 //오른쪽 마우스 클릭 -> 소스 -> 오버라이드
 public class ArrayList<E> implements List<E> {
@@ -112,26 +113,21 @@ public class ArrayList<E> implements List<E> {
 	public Iterator<E> iterator() {
 
 	    return new Iterator<E>() {
+	    	private int pos = 0;
+	    	private int size = size();
+	    	
 	       @Override
 	        public boolean hasNext() {
-	    	   if( data != null) {
-	    		   return true;
-	    	   }else {
-	    		   return false;
-	    	   }
+	    	   return pos<size;
 	        }
 	       
-
 	       @Override
 			public E next() {
-//	    	   ArrayList
-				return null;
+	    	   if(pos == size) 
+	    		  throw new NoSuchElementException(); //데이터가 없을 경우 예이처리
+	    	   return data[pos++];
 			}
 			
-//		      public E next(int size) {
-//		        	E tempE = data [size];
-//		        	return tempE;
-//		         }
 	   };
 	}
 

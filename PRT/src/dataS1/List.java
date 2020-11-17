@@ -2,7 +2,7 @@ package dataS1;
 
 import java.util.Iterator;
 
-public interface List<E> {
+public interface List<E> extends Iterable<E> {
 	
 	void add(E elemnet);			//리스트에 데이터를 추가한다. (맨 뒤에)
 

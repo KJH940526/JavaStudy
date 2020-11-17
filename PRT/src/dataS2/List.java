@@ -1,6 +1,8 @@
 package dataS2;
 
-public interface List<E> {
+import java.util.Iterator;
+
+public interface List<E> extends Iterable<E> {
 	
 	void add(E elemnet);			//리스트에 데이터를 추가한다. (맨 뒤에)
 
@@ -14,6 +16,6 @@ public interface List<E> {
 	
 	int size();						//리스트의 항목 수를 반환
 		
-
+	Iterator<E> iterator();			//
 }
 
