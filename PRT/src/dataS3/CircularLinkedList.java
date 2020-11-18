@@ -129,32 +129,52 @@ public class CircularLinkedList<E> implements List<E> {
 		return new Iterator<E>() {
 			private Node<E> x = tail.next; 
 
-			private int count = 0;
+//			private int count = 0;
+//			@Override
+//			public boolean hasNext() {   //size만 있으면 계속 돈다.
+//				if(count < size ) {
+//					count ++;
+//					return true;
+//				} else {
+//					return false;
+//				}
+//			}
+
+//			@Override
+//			public E next() {
+//				if(x == null)
+//					throw new NoSuchElementException(); { //범위 요소를 넘긴거고
+//				}		
+//					if(x == tail) {						//하나만 있을떄
+//						E data = x.data;
+////						System.out.println("data"+ data);
+//						return data;
+//					}
+//					E data = x.data;		
+//					x = x.next;
+//					return data;
+//			}
 			
-
-			@Override
-			public boolean hasNext() {   //size만 있으면 계속 돈다.
-				if(count < size ) {
-					count ++;
-					return true;
-				} else {
+			//선생님 버전
+			private Node<E> position = tail ==null ? null :tail.next; //데이터가 하나도 없을때 고려해서
+			private boolean isFirst = true;
+			
+			@Override	
+			public boolean hasNext() {
+				if(position == null)
 					return false;
+				if(isFirst) {
+					isFirst = false;
+					return true;
 				}
+				return (position != tail.next);
 			}
-
+			
 			@Override
 			public E next() {
-				if(x == null)
-					throw new NoSuchElementException(); { //범위 요소를 넘긴거고
-				}		
-					if(x == tail) {			
-						E data = x.data;
-//						System.out.println("data"+ data);
-						return data;
-					}
-					E data = x.data;
-					x = x.next;
-					return data;
+				E data = position.data;
+				position = position.next;
+				return data;		
 			}
 		};
 		
