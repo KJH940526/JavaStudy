@@ -21,7 +21,7 @@ public class StackCalculator {
 		for(int i=0; i< arr.length; i++) {
 			
 		}
-								
+						//stack.peek()로 읽어서 값 넣어주기 ㅇㅇ		
 //		brr = arr;
 		String ReSt = new String(arr);						//리턴 타입이 스트링이기 떄문에 다시 바꿈
 		return ReSt;    //324*+
