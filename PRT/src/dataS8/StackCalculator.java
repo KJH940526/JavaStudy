@@ -1,13 +1,85 @@
 package dataS8;
 
+
 import java.util.Stack;
+
+
+//알고리즘 작성능력 키우기
+//객체지향의 디자인 패턴 공부하기			gof 객체지향 디자인 패턴
+
+
+// 자바로 되어있는 객체지향 디자인패턴 책도 있음 -> 공부하다가 gof 디자인패턴을 공부(보통 c++)로 되어있음 // 디자인패턴이 중요
+// 쉽게 나온 책 찾아보기
 
 public class StackCalculator {
 	private String infixExpression;
+	
+	
 
 	public StackCalculator(String infixExpression) {
 		this.infixExpression = infixExpression;
 	}
+	
+	public int CalculateUsingStack() {
+
+		
+		String s = infixToPostfix();
+		
+		int num1 = 0;
+		int num2 = 0;
+		int num3 = 0;
+		char[] arr = s.toCharArray(); 					//배열을 받아
+
+		
+		
+		Stack<Integer> stack = new Stack<Integer>();		//int를 스택에 넣기 위해서 integer 타입의 스택을 만듬			
+		
+		for(int i =0; i <arr.length; i++) {
+			if(arr[i]>='0' && arr[i]<'9') {
+//				System.out.println("타입확인 : " +stack.getClass().getName());
+				
+
+				stack.push(arr[i]-'0'); // char에서 char를 빼면 타입이 int로 바뀌기 때문에 /////// stack에 push를 할 수 있는거고 '0'을 뺴는 이유는 그냥 값을 바꾸지 않기 위해서
+				
+//				stack.push(arr[i]-48);	//아스키 코드 0은 int로 48이기 떄문에  위랑 둘이 같음
+				
+//				System.out.println("-0의 타입 확인 : " +(stack.push(arr[i]-'0').getClass().getName()));  //getclass는 object 타입만 됨 => 원시자료형은 안됨		unboxing integer to int java 구글 검색
+				
+			} else if(arr[i] == '+') {				//구글에서 char - '0' 검색하면 이유 자세히 나옴 ㅇㅅㅇ;
+				num1 = stack.pop();
+				num2 = stack.pop();
+				
+				num3 = num2 + num1;
+				
+				stack.push(num3);
+		
+			} else if(arr[i] == '-') {
+				num1 = stack.pop();
+				num2 = stack.pop();
+				num3 = num2 - num1;
+				stack.push(num3);
+		
+			}  else if(arr[i] == '*') {
+				num1 = stack.pop();
+				num2 = stack.pop();
+				num3 = num2 * num1;
+				stack.push(num3);
+
+			}  else if(arr[i] == '/') {
+				num1 = stack.pop();
+				num2 = stack.pop();
+				
+				num3 = num2 / num1;
+				stack.push(num3);
+				
+
+			}	
+
+		}	
+			return num3;
+
+	}			
+	
 
 	public String infixToPostfix() {
 		String St = this.infixExpression; // StackCalculator 생성자에서 들어오는 스트링 값을 필드의 infixExprssion
@@ -43,7 +115,6 @@ public class StackCalculator {
 
 				break;
 			// 스택에 우선순위는 peek으로 읽어주면 될듯?
-
 			case '*':
 			case '/': // top 연산자보다 우선순위가 높은경우 (push)
 				if (stack.empty() || stack.peek() == '(' || stack.peek() == '+' || stack.peek() == '-') {
@@ -69,8 +140,103 @@ public class StackCalculator {
 		}
 		return rest; // 324*+
 	}
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//public String infixToPostfix2() {
+//Stack<Character> stack = new Stack<Character>();
+//char[] arr = infixExpression.toCharArray();
+//
+//
+//for (int i = 0; i < arr.length; i++) {
+//   if(arr[i] == '(') {
+//      stack.push(arr[i]);
+//   } else if(arr[i] == ')') {
+//      while (stack.peek() != '(') {
+//         res += stack.pop();
+//      }
+//      stack.pop(); 
+//   }
+//   else if( arr[i] >= '0' && arr[i] <= '9') {
+//      res += arr[i];
+//   } else { 
+//      if (!stack.empty() && (compareOfOperand(arr[i], stack.peek()) < 1) ) {
+//         while (!stack.empty() && stack.peek() != '(') {
+//            res += stack.pop();
+//         }
+//      }
+//      stack.push(arr[i]);
+//   }
+////   else if( arr[i] == '+' || arr[i] == '-' || arr[i] == '*' || arr[i]=='/') {
+////      if (!stack.empty() && (compareOfOperand(arr[i], stack.peek()) < 1) ) {
+////         while (!stack.empty() && stack.peek() != '(') {
+////            res += stack.pop();
+////         }
+////      }
+////      stack.push(arr[i]);
+////   } else { 
+////      res += arr[i];
+////   }
+//}
+//while (!stack.empty()) { // stack에 남아있는 것들 다 pop
+//   res += stack.pop();
+//}
+//return res;
+//}
+//
+//public int compareOfOperand (char a, char b) {
+//// 연산자 a가 b보다 우선순위가 큰 경우 +1
+//// b가 더 큰경우 -1
+//// 같은 경우 == 0
+////int valOfReturn = 0;
+////switch(a) {
+////case '+':
+////case '-':
+////   if( b == '/' || b == '*') valOfReturn = -1;
+////   else valOfReturn = 0;
+////   break;
+////case '*':
+////case '/':
+////   if( b == '+' || b == '-') valOfReturn = 0;
+////   else valOfReturn = 1;
+////   break;
+////}
+////return valOfReturn;
+//
+//// 선생님 방법
+//if(a == '*' || a == '/') {
+//   if(b == '/' || b == '*') {
+//      return 0;
+//   } else {
+//      return 1;
+//   }
+//} else {
+//   if(b == '/' || b == '*') {
+//      return -1;
+//   } else {
+//      return 0;
+//   }
+//}
+//}
+//
+
+	
+
+
 
 //중위표기법 -> 후위표기법
 //1.피연산자가 들어오면 바로 출력
