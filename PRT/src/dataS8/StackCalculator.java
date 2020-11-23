@@ -13,7 +13,7 @@ import java.util.Stack;
 
 public class StackCalculator {
 	private String infixExpression;
-	
+	private String postfixExpression = "";
 	
 
 	public StackCalculator(String infixExpression) {
@@ -23,12 +23,12 @@ public class StackCalculator {
 	public int CalculateUsingStack() {
 
 		
-		String s = infixToPostfix();
+		
 		
 		int num1 = 0;
 		int num2 = 0;
 		int num3 = 0;
-		char[] arr = s.toCharArray(); 					//배열을 받아
+		char[] arr = this.postfixExpression.toCharArray(); 					//배열을 받아
 
 		
 		
@@ -52,6 +52,9 @@ public class StackCalculator {
 				num3 = num2 + num1;
 				
 				stack.push(num3);
+				System.out.println("넘원1: " +num1);
+				System.out.println("넘2: " + num2);
+				System.out.println("스택이다"+stack);
 		
 			} else if(arr[i] == '-') {
 				num1 = stack.pop();
@@ -86,7 +89,7 @@ public class StackCalculator {
 											// 에 대입해주고 그 값을 메소드에서 St에 대입함
 		Stack<Character> stack = new Stack<Character>(); // 스택 생성
 		char[] arr = St.toCharArray(); // St를 char 타입의 배열로 바꿈
-		String rest = ""; // 후위표기법으로 표현된 식 리턴 해줄꺼
+		//String rest = ""; // 후위표기법으로 표현된 식 리턴 해줄꺼
 
 		// (1+2)*(3/4)+(5+(6-7)) -> 12+34/*567-++
 		for (int i = 0; i < arr.length; i++) {
@@ -96,7 +99,7 @@ public class StackCalculator {
 				break;
 			case ')': // 2. 닫힌 괄호는 ( 나올떄 까지 pop이니깐
 				while ('(' != stack.peek()) { // stack.peek()로 읽어서 값 넣어주기 ㅇㅇ로 읽어주고
-					rest += stack.pop(); // 리턴할 문자열 스트링에 pop을 해준다.
+					this.postfixExpression += stack.pop(); // 리턴할 문자열 스트링에 pop을 해준다.
 				}
 				stack.pop(); // ) 가 나오면 (를 없애주기 위한 pop을 해준다. 버림버림
 				break;
@@ -108,7 +111,7 @@ public class StackCalculator {
 					stack.push(arr[i]); // 괄호가 비어 있으면 push
 				} else {
 					while (!stack.empty() && stack.peek() != '(') {
-						rest += stack.pop(); // rest에 pop()하고
+						this.postfixExpression += stack.pop(); // rest에 pop()하고
 					}
 					stack.push(arr[i]);   //다음번 peek를 위한 작업
 				}
@@ -121,7 +124,7 @@ public class StackCalculator {
 					stack.push(arr[i]);
 				}else {
 					while (!stack.empty() && stack.peek() != '(') {  //왜 stack.peek() != '*' 가 아닌껄가??
-						rest += stack.pop(); // rest에 pop()하고
+						this.postfixExpression += stack.pop(); // rest에 pop()하고
 					}
 					stack.push(arr[i]);	//다음번 peek를 위한 작업
 				}
@@ -129,16 +132,16 @@ public class StackCalculator {
 				break;
 
 			default:
-				rest += arr[i]; // 피연산자들을 넣어줘야하고
+				this.postfixExpression += arr[i]; // 피연산자들을 넣어줘야하고
 				break;
 
 			}
 		}
 		
 		if (!stack.empty()) { // 남아있는 연산자 뿅뿅
-			rest += stack.pop();
+			this.postfixExpression += stack.pop();
 		}
-		return rest; // 324*+
+		return this.postfixExpression; // 324*+
 	}
 	
 	

@@ -5,7 +5,7 @@ public class StackCalculatorExam01 {
 		
 
 //		StackCalculator cal = new StackCalculator("(1*2+3)/4");
-		StackCalculator cal = new StackCalculator("(1+2*3)");
+		StackCalculator cal = new StackCalculator("(1*2+3)");
 		
 //		StackCalculator cal = new StackCalculator("(1+2)*(3/4)+(5+(6-7))"); // 12+34/*567-++
 		

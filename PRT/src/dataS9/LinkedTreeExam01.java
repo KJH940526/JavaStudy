@@ -11,6 +11,7 @@ public class LinkedTreeExam01 {
 		
 		LinkedTree<String> tree = new LinkedTree<String>("A");
 		List<String> list = new ArrayList<String>();
+
 		
 		LinkedTree.TreeNode<String> nodeA = tree.getRoot();					
 		
@@ -37,16 +38,16 @@ public class LinkedTreeExam01 {
 		tree.traversalPostorder(list);
 		System.out.println(Arrays.toString(list.toArray()));	
 //		list.removeAll(list); //를 하거나?
-		list.clear();
-		
-		//전위
-		tree.traversalPreorder(list);
-		System.out.println(Arrays.toString(list.toArray()));
-		list.clear();
-		
-		//중위
-		tree.traversalInorder(list);
-		System.out.println(Arrays.toString(list.toArray()));
+//		list.clear();
+//		
+//		//전위
+//		tree.traversalPreorder(list);
+//		System.out.println(Arrays.toString(list.toArray()));
+//		list.clear();
+//		
+//		//중위
+//		tree.traversalInorder(list);
+//		System.out.println(Arrays.toString(list.toArray()));
 				
 		
 //						A
