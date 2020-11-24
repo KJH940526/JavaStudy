@@ -5,6 +5,42 @@ import java.util.List;
 public class LinkedTree<E> {
 	private TreeNode<E> root;
 
+	public static class TreeNode<E> {
+		private TreeNode<E> left;
+		private TreeNode<E> right;
+		private E data;
+
+		public TreeNode(E data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+
+		public E getData() {
+			return data;
+		}
+
+		public TreeNode<E> getLeft() {
+			return left;
+		}
+
+		public void setLeft(TreeNode<E> left) {
+			this.left = left;
+		}
+
+		public TreeNode<E> getRight() {
+			return right;
+		}
+
+		public void setRight(TreeNode<E> right) {
+			this.right = right;
+		}
+
+		public void setData(E data) {
+			this.data = data;
+		}
+	}
+	
 	public LinkedTree() {
 	}
 
@@ -85,41 +121,6 @@ public class LinkedTree<E> {
 		}
 	}
 
-	public static class TreeNode<E> {
-		private TreeNode<E> left;
-		private TreeNode<E> right;
-		private E data;
 
-		public TreeNode(E data) {
-			this.data = data;
-			this.left = null;
-			this.right = null;
-		}
-
-		public E getData() {
-			return data;
-		}
-
-		public TreeNode<E> getLeft() {
-			return left;
-		}
-
-		public void setLeft(TreeNode<E> left) {
-			this.left = left;
-		}
-
-		public TreeNode<E> getRight() {
-			return right;
-		}
-
-		public void setRight(TreeNode<E> right) {
-			this.right = right;
-		}
-
-		public void setData(E data) {
-			this.data = data;
-		}
-
-	}
 
 }

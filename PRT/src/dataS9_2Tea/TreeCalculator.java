@@ -12,6 +12,7 @@ public class TreeCalculator {
 		this.infixExpression = infixExpression;
 	}
 
+	//선생님 코드지만 여기서 변환이 잘 못 되었음
 	public String infixToPostfix() {
 		Stack<Character> stack = new Stack<Character>();
 		char[] arrayExpression = new char[infixExpression.length()];
@@ -53,6 +54,10 @@ public class TreeCalculator {
 		return s;
 	}
 
+	
+	
+	
+	
 	public LinkedTree<String> makeExpressionTree() {
 		Stack<LinkedTree.TreeNode<String>> stack = new Stack<LinkedTree.TreeNode<String>>();
 
