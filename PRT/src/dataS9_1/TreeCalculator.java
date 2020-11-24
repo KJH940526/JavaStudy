@@ -6,7 +6,7 @@ import dataS9_1.LinkedTree.TreeNode;
 
 public class TreeCalculator<E> {
 	private String infixExpression;
-	private String postfixExpression = ""; // ÇÊµå »ç¿ëÇÏ±â
+	private String postfixExpression = ""; // í•„ë“œ ì‚¬ìš©í•˜ê¸°
 
 	LinkedTree<String> tree = new LinkedTree<String>(); // dataS9_1.LinkedTree
 
@@ -16,60 +16,60 @@ public class TreeCalculator<E> {
 	}
 	
 	public String infixToPostfix() {
-		String St = this.infixExpression; // StackCalculator »ı¼ºÀÚ¿¡¼­ µé¾î¿À´Â ½ºÆ®¸µ °ªÀ» ÇÊµåÀÇ infixExprssion
-											// ¿¡ ´ëÀÔÇØÁÖ°í ±× °ªÀ» ¸Ş¼Òµå¿¡¼­ St¿¡ ´ëÀÔÇÔ
-		Stack<Character> stack = new Stack<Character>(); // ½ºÅÃ »ı¼º
-		char[] arr = St.toCharArray(); // St¸¦ char Å¸ÀÔÀÇ ¹è¿­·Î ¹Ù²Ş
-		// String rest = ""; // ÈÄÀ§Ç¥±â¹ıÀ¸·Î Ç¥ÇöµÈ ½Ä ¸®ÅÏ ÇØÁÙ²¨
+		String St = this.infixExpression; // StackCalculator ìƒì„±ìì—ì„œ ë“¤ì–´ì˜¤ëŠ” ìŠ¤íŠ¸ë§ ê°’ì„ í•„ë“œì˜ infixExprssion
+											// ì— ëŒ€ì…í•´ì£¼ê³  ê·¸ ê°’ì„ ë©”ì†Œë“œì—ì„œ Stì— ëŒ€ì…í•¨
+		Stack<Character> stack = new Stack<Character>(); // ìŠ¤íƒ ìƒì„±
+		char[] arr = St.toCharArray(); // Stë¥¼ char íƒ€ì…ì˜ ë°°ì—´ë¡œ ë°”ê¿ˆ
+		// String rest = ""; // í›„ìœ„í‘œê¸°ë²•ìœ¼ë¡œ í‘œí˜„ëœ ì‹ ë¦¬í„´ í•´ì¤„êº¼
 
 		// (1+2)*(3/4)+(5+(6-7)) -> 12+34/*567-++
 		for (int i = 0; i < arr.length; i++) {
 			switch (arr[i]) {
-			case '(': // 1. ¿©´Â °ıÈ£´Â ¹«Á¶°Ç ½ºÅÃ¿¡ Çª½¬
+			case '(': // 1. ì—¬ëŠ” ê´„í˜¸ëŠ” ë¬´ì¡°ê±´ ìŠ¤íƒì— í‘¸ì‰¬
 				stack.push(arr[i]);
 				break;
-			case ')': // 2. ´İÈù °ıÈ£´Â ( ³ª¿Ã‹š ±îÁö popÀÌ´Ï±ñ
-				while ('(' != stack.peek()) { // stack.peek()·Î ÀĞ¾î¼­ °ª ³Ö¾îÁÖ±â ¤·¤··Î ÀĞ¾îÁÖ°í
-					this.postfixExpression += stack.pop(); // ¸®ÅÏÇÒ ¹®ÀÚ¿­ ½ºÆ®¸µ¿¡ popÀ» ÇØÁØ´Ù.
+			case ')': // 2. ë‹«íŒ ê´„í˜¸ëŠ” ( ë‚˜ì˜¬Â‹Âš ê¹Œì§€ popì´ë‹ˆê¹
+				while ('(' != stack.peek()) { // stack.peek()ë¡œ ì½ì–´ì„œ ê°’ ë„£ì–´ì£¼ê¸° ã…‡ã…‡ë¡œ ì½ì–´ì£¼ê³ 
+					this.postfixExpression += stack.pop(); // ë¦¬í„´í•  ë¬¸ìì—´ ìŠ¤íŠ¸ë§ì— popì„ í•´ì¤€ë‹¤.
 				}
-				stack.pop(); // ) °¡ ³ª¿À¸é (¸¦ ¾ø¾ÖÁÖ±â À§ÇÑ popÀ» ÇØÁØ´Ù. ¹ö¸²¹ö¸²
+				stack.pop(); // ) ê°€ ë‚˜ì˜¤ë©´ (ë¥¼ ì—†ì• ì£¼ê¸° ìœ„í•œ popì„ í•´ì¤€ë‹¤. ë²„ë¦¼ë²„ë¦¼
 				break;
 
 			case '+':
 			case '-':
-				// top ¿¬»êÀÚº¸´Ù ¿ì¼±¼øÀ§°¡ ³ôÀº°æ¿ì
-				if (stack.empty() || stack.peek() == '(') { // ¿©´Â °ıÈ£´Â ¹«Á¶°Ç push
-					stack.push(arr[i]); // °ıÈ£°¡ ºñ¾î ÀÖÀ¸¸é push
+				// top ì—°ì‚°ìë³´ë‹¤ ìš°ì„ ìˆœìœ„ê°€ ë†’ì€ê²½ìš°
+				if (stack.empty() || stack.peek() == '(') { // ì—¬ëŠ” ê´„í˜¸ëŠ” ë¬´ì¡°ê±´ push
+					stack.push(arr[i]); // ê´„í˜¸ê°€ ë¹„ì–´ ìˆìœ¼ë©´ push
 				} else {
 					while (!stack.empty() && stack.peek() != '(') {
-						this.postfixExpression += stack.pop(); // rest¿¡ pop()ÇÏ°í
+						this.postfixExpression += stack.pop(); // restì— pop()í•˜ê³ 
 					}
-					stack.push(arr[i]); // ´ÙÀ½¹ø peek¸¦ À§ÇÑ ÀÛ¾÷
+					stack.push(arr[i]); // ë‹¤ìŒë²ˆ peekë¥¼ ìœ„í•œ ì‘ì—…
 				}
 
 				break;
-			// ½ºÅÃ¿¡ ¿ì¼±¼øÀ§´Â peekÀ¸·Î ÀĞ¾îÁÖ¸é µÉµí?
+			// ìŠ¤íƒì— ìš°ì„ ìˆœìœ„ëŠ” peekìœ¼ë¡œ ì½ì–´ì£¼ë©´ ë ë“¯?
 			case '*':
-			case '/': // top ¿¬»êÀÚº¸´Ù ¿ì¼±¼øÀ§°¡ ³ôÀº°æ¿ì (push)
+			case '/': // top ì—°ì‚°ìë³´ë‹¤ ìš°ì„ ìˆœìœ„ê°€ ë†’ì€ê²½ìš° (push)
 				if (stack.empty() || stack.peek() == '(' || stack.peek() == '+' || stack.peek() == '-') {
 					stack.push(arr[i]);
 				} else {
-					while (!stack.empty() && stack.peek() != '(') { // ¿Ö stack.peek() != '*' °¡ ¾Æ´Ñ²¬°¡??
-						this.postfixExpression += stack.pop(); // rest¿¡ pop()ÇÏ°í
+					while (!stack.empty() && stack.peek() != '(') { // ì™œ stack.peek() != '*' ê°€ ì•„ë‹Œê»„ê°€??
+						this.postfixExpression += stack.pop(); // restì— pop()í•˜ê³ 
 					}
-					stack.push(arr[i]); // ´ÙÀ½¹ø peek¸¦ À§ÇÑ ÀÛ¾÷
+					stack.push(arr[i]); // ë‹¤ìŒë²ˆ peekë¥¼ ìœ„í•œ ì‘ì—…
 				}
-				// top ¿¬»êÀÚ º¸´Ù ¿ì¼± ¼øÀ§°¡ ³·°Å³ª °°À»‹š ±îÁö popÀ» ÇÏ°í ±×¸®°í push
+				// top ì—°ì‚°ì ë³´ë‹¤ ìš°ì„  ìˆœìœ„ê°€ ë‚®ê±°ë‚˜ ê°™ì„Â‹Âš ê¹Œì§€ popì„ í•˜ê³  ê·¸ë¦¬ê³  push
 				break;
 
 			default:
-				this.postfixExpression += arr[i]; // ÇÇ¿¬»êÀÚµéÀ» ³Ö¾îÁà¾ßÇÏ°í
+				this.postfixExpression += arr[i]; // í”¼ì—°ì‚°ìë“¤ì„ ë„£ì–´ì¤˜ì•¼í•˜ê³ 
 				break;
 
 			}
 		}
 
-		if (!stack.empty()) { // ³²¾ÆÀÖ´Â ¿¬»êÀÚ »Ğ»Ğ
+		if (!stack.empty()) { // ë‚¨ì•„ìˆëŠ” ì—°ì‚°ì ë¿…ë¿…
 			this.postfixExpression += stack.pop();
 		}
 		return this.postfixExpression; // 324*+
@@ -79,19 +79,19 @@ public class TreeCalculator<E> {
 	
 	
 	public LinkedTree<String> makeExpressionTree() {
-		// ³ª¿Â ÈÄÀ§¿¬»êÀÚ¸¦ ½ºÅÃÀ» ÅëÇØ¼­ ¼ö½ÄÆ®¸® ¸¸µé¾îÁÖ±â
+		// ë‚˜ì˜¨ í›„ìœ„ì—°ì‚°ìë¥¼ ìŠ¤íƒì„ í†µí•´ì„œ ìˆ˜ì‹íŠ¸ë¦¬ ë§Œë“¤ì–´ì£¼ê¸°
 		
-		// ½ºÅÃ¿¡ ¸µÅ©µåÆ®¸®ÀÇ ³ëµå -> 1)¿ì¸®°¡¸¸µç Æ®¸®³ëµå¸¦ ÅëÇØ¼­ »ı¼ºÀÚ¸Ş¼Òµå¸¦ ¾²±â À§ÇØ¼­ 2)Node¸¦ °ª°ú ·¹ÆÛ·±½º¸¦ À¯ÁöÇÏ±â À§ÇØ¼­
-		Stack<LinkedTree.TreeNode<String>> stack = new Stack<LinkedTree.TreeNode<String>>(); // ÀÌ°É·Î ÇØ¾ßÁö stack¿¡ ³ëµå¸¦ ³ÖÀ»¼ö ÀÖÀ½
+		// ìŠ¤íƒì— ë§í¬ë“œíŠ¸ë¦¬ì˜ ë…¸ë“œ -> 1)ìš°ë¦¬ê°€ë§Œë“  íŠ¸ë¦¬ë…¸ë“œë¥¼ í†µí•´ì„œ ìƒì„±ìë©”ì†Œë“œë¥¼ ì“°ê¸° ìœ„í•´ì„œ 2)Nodeë¥¼ ê°’ê³¼ ë ˆí¼ëŸ°ìŠ¤ë¥¼ ìœ ì§€í•˜ê¸° ìœ„í•´ì„œ
+		Stack<LinkedTree.TreeNode<String>> stack = new Stack<LinkedTree.TreeNode<String>>(); // ì´ê±¸ë¡œ í•´ì•¼ì§€ stackì— ë…¸ë“œë¥¼ ë„£ì„ìˆ˜ ìˆìŒ
 																								
 		
 		char[] arr = postfixExpression.toCharArray();
 
-		// ¿¬»êÀÚ ¸¸³ª¸é ÆËÆËÇÏ°í
-		// »õ·Î¿î ½ºÅÃ¿¡ Çª½¬
-		// ºê·¹ÀÌÅ©
-		// µğÆúÆ®(ºñ¿¬»êÀÚ)
-		// »õ·Î¿î ³ëµå ¸¸µé°í ±×´ë·Î Çª½¬
+		// ì—°ì‚°ì ë§Œë‚˜ë©´ íŒíŒí•˜ê³ 
+		// ìƒˆë¡œìš´ ìŠ¤íƒì— í‘¸ì‰¬
+		// ë¸Œë ˆì´í¬
+		// ë””í´íŠ¸(ë¹„ì—°ì‚°ì)
+		// ìƒˆë¡œìš´ ë…¸ë“œ ë§Œë“¤ê³  ê·¸ëŒ€ë¡œ í‘¸ì‰¬
 	
 		for (int i = 0; i < arr.length; i++) {
 			char s = arr[i];
@@ -100,61 +100,62 @@ public class TreeCalculator<E> {
 			case '-':
 			case '*':
 			case '/':
-				System.out.println("¿¬»êÀÚ");
+				System.out.println("ì—°ì‚°ì");
 				TreeNode<String> node = new TreeNode<String>(String.valueOf(arr[i]));
-				tree.setRoot(node); // Áß½É³ëµå
-				System.out.println("¿¬»êÀÚ: " +tree.getRoot().data);  //
+				tree.setRoot(node); // ì¤‘ì‹¬ë…¸ë“œ
+				System.out.println("ì—°ì‚°ì: " +tree.getRoot().data);  //
 				tree.insertRight(node, stack.pop());
-				System.out.println("¶óÀÌÆ® : " + node.right.data);
+				System.out.println("ë¼ì´íŠ¸ : " + node.right.data);
 				tree.insertLeft(node, stack.pop());
-				System.out.println("·¹ÇÁÆ® : " + node.left.data);
+				System.out.println("ë ˆí”„íŠ¸ : " + node.left.data);
 				stack.push(node);
 				break;
 
 			default:
 				stack.push(new TreeNode<String>(String.valueOf(s)));
-				System.out.println("½ºÅÂÀÇ ÇÇÅ© µ¥ÀÌÅÍ" +stack.peek().data);
+				System.out.println("ìŠ¤íƒœì˜ í”¼í¬ ë°ì´í„°" +stack.peek().data);
 				break;
 			}
 		}
 
 
-		// ´Ù¸¥ ¹æ½Ä1 root¿¡ 1ÀÌ³ª 0 °°Àº Æ¯Á¤°ªÀ» ÁÖ°í ±×°Ô ¾Æ´Ï¸é ·çÆ®³ëµå°¡ ¾Æ´Ï±â‹š¹®¿¡ °è»êÀ» ³¡³¾¼ö ÀÖ´Ù?
-		// ´Ù¸¥ ¹æ¹ı2 ¿¬»êÇÏ¸é¼­ ÀÚ¼Õ³ëµå¸¦ Áö¿î´Ù µû¶ó¼­ ÀÚ¼Õ ³ëµå°¡ ¾øÀ¸¸é °è»êÀ» ¸ØÃß°í ±× °ªÀ» root¿¡ ³Ñ°ÜÁØ´Ù *******
+		// ë‹¤ë¥¸ ë°©ì‹1 rootì— 1ì´ë‚˜ 0 ê°™ì€ íŠ¹ì •ê°’ì„ ì£¼ê³  ê·¸ê²Œ ì•„ë‹ˆë©´ ë£¨íŠ¸ë…¸ë“œê°€ ì•„ë‹ˆê¸°Â‹Âšë¬¸ì— ê³„ì‚°ì„ ëë‚¼ìˆ˜ ìˆë‹¤?
+		// ë‹¤ë¥¸ ë°©ë²•2 ì—°ì‚°í•˜ë©´ì„œ ìì†ë…¸ë“œë¥¼ ì§€ìš´ë‹¤ ë”°ë¼ì„œ ìì† ë…¸ë“œê°€ ì—†ìœ¼ë©´ ê³„ì‚°ì„ ë©ˆì¶”ê³  ê·¸ ê°’ì„ rootì— ë„˜ê²¨ì¤€ë‹¤ *******
 		return tree;
 	}
 
 	
 	
-	// ºñ±³ÇÏ±â
-	// 1. Æ®¸®¿¡ ³Ö°í
-	// 2. °è»êÇÏ´Âµ¥ °è»êÀº 1.ÀÚ½ÄÀÌ ¾ø´Â ³ëµå±îÁö°¡°í
-	// 2. ¸Ç ¸¶Áö¸· ³ëµå°¡ ÀÚ½ÄÀÌ ¾øÀ»‹š±îÁö if¹®ÀÌ¶û for¹®À» ¸®°í node.left.data´Â node.left.right.data +
-	// node.left.left.data¸¦ ÇÑ´Ù.
-	// 3. ¸¶Áö¸·¿¡ »óÀ§ ³ëµå°¡ ¾øÀ¸¸é ¹İÈ¯¹Ş´Â´Ù. ÀÌ·¸°Ô »ı°¢Çß¾úÀ½
+	// ë¹„êµí•˜ê¸°
+	// 1. íŠ¸ë¦¬ì— ë„£ê³ 
+	// 2. ê³„ì‚°í•˜ëŠ”ë° ê³„ì‚°ì€ 1.ìì‹ì´ ì—†ëŠ” ë…¸ë“œê¹Œì§€ê°€ê³ 
+	// 2. ë§¨ ë§ˆì§€ë§‰ ë…¸ë“œê°€ ìì‹ì´ ì—†ì„Â‹Âšê¹Œì§€ ifë¬¸ì´ë‘ forë¬¸ì„ ë¦¬ê³  node.left.dataëŠ” node.left.right.data +
+	// node.left.left.dataë¥¼ í•œë‹¤.
+	// 3. ë§ˆì§€ë§‰ì— ìƒìœ„ ë…¸ë“œê°€ ì—†ìœ¼ë©´ ë°˜í™˜ë°›ëŠ”ë‹¤. ì´ë ‡ê²Œ ìƒê°í–ˆì—ˆìŒ
 	
-	// 2. ¿¡¼­ LinkedTree¿¡¼­ getLeftNode¶ó´Â »ı¼ºÀÚ ¸Ş¼Òµå¸¦ ¸¸µé¾î¼­ ³ëµåÀÇ left°ªÀ» ¹Ş¾Æ¿Í¼­ È®ÀÎ
+	// 2. ì—ì„œ LinkedTreeì—ì„œ getLeftNodeë¼ëŠ” ìƒì„±ì ë©”ì†Œë“œë¥¼ ë§Œë“¤ì–´ì„œ ë…¸ë“œì˜ leftê°’ì„ ë°›ì•„ì™€ì„œ í™•ì¸
 	// 3. 
 	
-	//¼­ºê Æ®¸® ¿ª½Ã ¼­ºêÆ®¸®·Î ÀÌ·ïÁ® ÀÖ°í ¶Ç ¼­ºêÆ®¸®´Â ¶Ç ÀÌ·ç¾îÁ®ÀÖ´Ù -> Àç±Í¸¦ ¾²°í Àç±ÍÀÇ Á¾·áÁ¶°ÇÀº ´Ü¸»³ëµå ÀÏ‹š
+	//ì„œë¸Œ íŠ¸ë¦¬ ì—­ì‹œ ì„œë¸ŒíŠ¸ë¦¬ë¡œ ì´ë¤„ì ¸ ìˆê³  ë˜ ì„œë¸ŒíŠ¸ë¦¬ëŠ” ë˜ ì´ë£¨ì–´ì ¸ìˆë‹¤ -> ì¬ê·€ë¥¼ ì“°ê³  ì¬ê·€ì˜ ì¢…ë£Œì¡°ê±´ì€ ë‹¨ë§ë…¸ë“œ ì¼Â‹Âš
 	int evaluateExpressionTree(LinkedTree.TreeNode<E> node) {
-		System.out.println("¸Å°³º¯¼ö node: " +node.data);
+		System.out.println("ë§¤ê°œë³€ìˆ˜ node: " +node.data);
 		int lvalue = 0;
 		int rvalue = 0;
 		String cal = "";
-		if (node.getLeftNode() != null && node.getRightNode() != null) { // ³ëµå°¡ Ãß°¡·Î ÀÖÀ½ -> ¿¬»êÀÚÀÓ
-			lvalue = evaluateExpressionTree(node.getLeftNode()); // Àç±Í
-			System.out.println("¿ŞÂÊ º§·ù : "+lvalue);
+		if (node.getLeftNode() != null && node.getRightNode() != null) { // ë…¸ë“œê°€ ì¶”ê°€ë¡œ ìˆìŒ -> ì—°ì‚°ìì„
+			lvalue = evaluateExpressionTree(node.getLeftNode()); // ì¬ê·€
+			System.out.println("ì™¼ìª½ ë²¨ë¥˜ : "+lvalue);
 			System.out.println();
 			rvalue = evaluateExpressionTree(node.getRightNode());
-			System.out.println("¿À¸¥ º§·ù : "+rvalue);
+			System.out.println("ì˜¤ë¥¸ ë²¨ë¥˜ : "+rvalue);
 			System.out.println();
 			cal = (String) node.getNode();
-			return getResult(lvalue, rvalue, cal);
-		} else { 											//ÇÇ¿¬»êÀÚ
-			System.out.println("°Ù³ëµå : " +node.getNode());
+			return getResult(lvalue, rvalue, cal);			//ì´ ê²°ê³¼ê°’ì´ ë‹¤ì‹œ ë…¸ë“œë¡œ?
+			
+		} else { 											//í”¼ì—°ì‚°ì
+			System.out.println("ê²Ÿë…¸ë“œ : " +node.getNode());
 			System.out.println();
-			System.out.println("³ëµå µ¥ÀÌÅ¸: "+node.data);
+			System.out.println("ë…¸ë“œ ë°ì´íƒ€: "+node.data);
 			return Integer.parseInt(String.valueOf(node.getNode()));
 		}
 	}
@@ -176,7 +177,7 @@ public class TreeCalculator<E> {
 			result = a / b;
 			break;
 		}
-		System.out.println("°á°ú°ª: "+result);
+		System.out.println("ê²°ê³¼ê°’: "+result);
 		return result;
 	}
 }

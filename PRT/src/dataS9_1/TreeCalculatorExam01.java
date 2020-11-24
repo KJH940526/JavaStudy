@@ -88,11 +88,9 @@ GetL : +
 GetL : 7
 GetNode : 7
 겟노드 : 7
-
 노드 데이타: 7
 GetNode : 7
 왼쪽 벨류 : 7
-
 GetR : +
 매개변수 node: *
 GetL : *
@@ -102,41 +100,33 @@ GetL : *
 GetL : 4
 GetNode : 4
 겟노드 : 4
-
 노드 데이타: 4
 GetNode : 4
 왼쪽 벨류 : 4
-
 GetR : *
 매개변수 node: 2
 GetL : 2
 GetNode : 2
 겟노드 : 2
-
 노드 데이타: 2
 GetNode : 2
 오른 벨류 : 2
-
 GetNode : *
 int a: 4 int b: 2 String c: *
 결과값: 8
 오른 벨류 : 8
-
 GetNode : +
 int a: 7 int b: 8 String c: +
 결과값: 15
 왼쪽 벨류 : 15
-
 GetR : -
 매개변수 node: 1
 GetL : 1
 GetNode : 1
 겟노드 : 1
-
 노드 데이타: 1
 GetNode : 1
 오른 벨류 : 1
-
 GetNode : -
 int a: 15 int b: 1 String c: -
 결과값: 14

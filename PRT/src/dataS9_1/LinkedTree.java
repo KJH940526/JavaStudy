@@ -4,12 +4,12 @@ import java.util.*;
 
 public class LinkedTree<E> {
 
-	private TreeNode<E> root; // ·çÆ®³ëµå
+	private TreeNode<E> root; // ë£¨íŠ¸ë…¸ë“œ
 	
-	// ³»ºÎ Å¬·¡½º Á¤ÀÇ
+	// ë‚´ë¶€ í´ë˜ìŠ¤ ì •ì˜
 	public static class TreeNode<E> {
 		TreeNode<E> left;
-		TreeNode<E> right; // ¾ç¹æÇâ ¸µÅ©µå ¸®½ºÆ®
+		TreeNode<E> right; // ì–‘ë°©í–¥ ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸
 		E data;
 
 		public TreeNode(E data) {
@@ -19,19 +19,19 @@ public class LinkedTree<E> {
 			this.right = null;
 		}
 
-		//¸¸µé¾îÁÜ ÇöÀç ³ëµå¸¦ ¾ò±â À§ÇØ¼­
+		//ë§Œë“¤ì–´ì¤Œ í˜„ì¬ ë…¸ë“œë¥¼ ì–»ê¸° ìœ„í•´ì„œ
 		public E getNode() {
 			System.out.println("GetNode : "  + data);
 			return data;
 		}
 
-		//¸¸µé¾îÁÜ
+		//ë§Œë“¤ì–´ì¤Œ
 		public TreeNode<E> getLeftNode() {
 			System.out.println("GetL : " + data);
 			return left;
 		}
 
-		//¸¸µé¾îÁÜ
+		//ë§Œë“¤ì–´ì¤Œ
 		public TreeNode<E> getRightNode() {
 			System.out.println("GetR : " + data);
 			return right;
@@ -39,18 +39,18 @@ public class LinkedTree<E> {
 
 	}
 	
-	//Æ®¸® ±âº»»ı¼ºÀÚ
+	//íŠ¸ë¦¬ ê¸°ë³¸ìƒì„±ì
 	public LinkedTree() {
-		System.out.println("±âº»»ı¼ºÀÚ");
+		System.out.println("ê¸°ë³¸ìƒì„±ì");
 		// TODO Auto-generated constructor stub
 	}
 
-//	//»ı¼º½Ã ·çÆ®³ëµå¿¡ °ªÀ» Áı¾î³Ö´Â »ı¼ºÀÚ
+//	//ìƒì„±ì‹œ ë£¨íŠ¸ë…¸ë“œì— ê°’ì„ ì§‘ì–´ë„£ëŠ” ìƒì„±ì
 //	public LinkedTree(E data) {
-//		root = new TreeNode<E>(data); // »ı¼ºÀÚ·Î »ı±â¸é ·çÆ®º¯¼ö¿¡ Ã¹³ëµå µ¥ÀÌÅÍ¸¦ ÀúÀå
+//		root = new TreeNode<E>(data); // ìƒì„±ìë¡œ ìƒê¸°ë©´ ë£¨íŠ¸ë³€ìˆ˜ì— ì²«ë…¸ë“œ ë°ì´í„°ë¥¼ ì €ì¥
 //	}
 
-	//¸¸µé¾úÀ½ // Root ³ëµå¸¦ ¾ò±âÀ§ÇØ¼­
+	//ë§Œë“¤ì—ˆìŒ // Root ë…¸ë“œë¥¼ ì–»ê¸°ìœ„í•´ì„œ
 	public void setRoot(TreeNode<E> root) { 
 //		System.out.println("root: "+root);
 //		System.out.println("this.root: "+ this.root);
@@ -60,48 +60,49 @@ public class LinkedTree<E> {
 	}
 
 	public TreeNode<E> getRoot() {
-//		System.out.println("get·çÆ® : " +root);
+//		System.out.println("getë£¨íŠ¸ : " +root);
 		return root;
 	}
 
-	public TreeNode<E> insertLeft(TreeNode<E> node, E data) {
-//     System.out.println("·¹ÇÁÆ®: "+ node.data);
-		TreeNode<E> leftNode = new TreeNode<E>(data);
-		node.left = leftNode; // ´ÙÀ½ ¿¬°áÀ» À§ÇÑ»ı±ä ³ëµå ¿ŞÂÊ¿¡ ¼ï¼ï
-		return leftNode; // ±×¸®°í ¸®ÅÏ
+//	public TreeNode<E> insertLeft(TreeNode<E> node, E data) {
+////     System.out.println("ë ˆí”„íŠ¸: "+ node.data);
+//		TreeNode<E> leftNode = new TreeNode<E>(data);
+//		node.left = leftNode; // ë‹¤ìŒ ì—°ê²°ì„ ìœ„í•œìƒê¸´ ë…¸ë“œ ì™¼ìª½ì— ì‡½ì‡½
+//		return leftNode; // ê·¸ë¦¬ê³  ë¦¬í„´
+//
+//	}
+//
+//	public TreeNode<E> insertRight(TreeNode<E> node, E data) {
+//		System.out.println("ë¼ì´íŠ¸: "+ node.data);
+//		TreeNode<E> rightNode = new TreeNode<E>(data);
+//		node.right = rightNode;
+//		return rightNode;
+//
+//	}
 
-	}
-
-	public TreeNode<E> insertRight(TreeNode<E> node, E data) {
-		System.out.println("¶óÀÌÆ®: "+ node.data);
-		TreeNode<E> rightNode = new TreeNode<E>(data);
-		node.right = rightNode;
-		return rightNode;
-
-	}
-
-	// ¸¸µé¾îÁØ°Å!! Å¸°íÅ¸°í ³»·Á°¡¼­ ³ëµåÀÇ ³¡ ·¹ÇÁÆ®±îÁö °¡±â À§ÇØ¼­
+	// ë§Œë“¤ì–´ì¤€ê±°!! íƒ€ê³ íƒ€ê³  ë‚´ë ¤ê°€ì„œ ë…¸ë“œì˜ ë ë ˆí”„íŠ¸ê¹Œì§€ ê°€ê¸° ìœ„í•´ì„œ
 	public TreeNode<E> insertLeft(TreeNode<E> node, TreeNode<E> left) {
-	    System.out.println("·¹ÇÁÆ® TreeNode: "+ left);
-	    System.out.println("·¹ÇÁÆ® TreeNode node.left: "+ node.left);
+	    System.out.println("ë ˆí”„íŠ¸ TreeNode: "+ left);
+	    System.out.println("ë ˆí”„íŠ¸ TreeNode node.left: "+ node.left);
 		node.left = left;
 		return left;
 	}
 	
-	// ¸¸µé¾îÁØ°Å!! Å¸°íÅ¸°í ³»·Á°¡¼­ ³ëµåÀÇ ³¡ ¶óÀÌÆ®±îÁö °¡±â À§ÇØ¼­
+	// ë§Œë“¤ì–´ì¤€ê±°!! íƒ€ê³ íƒ€ê³  ë‚´ë ¤ê°€ì„œ ë…¸ë“œì˜ ë ë¼ì´íŠ¸ê¹Œì§€ ê°€ê¸° ìœ„í•´ì„œ
 	public TreeNode<E> insertRight(TreeNode<E> node, TreeNode<E> right) {
-	    System.out.println("¶óÀÌÆ® TreeNode: "+ right);
-	    System.out.println("¶óÀÌÆ® TreeNode node.left: "+ node.right);
+	    System.out.println("ë¼ì´íŠ¸ TreeNode: "+ right);
+	    System.out.println("ë¼ì´íŠ¸ TreeNode node.left: "+ node.right);
 		node.right = right;
 		return right;
 	}
 
 	public void traversalPostorder(List<E> result) {
+//		System.out.println("ì¬ê·€1");
 		traversalPostorder(root, result);
 	}
 
 	public void traversalPostorder(TreeNode<E> node, List<E> result) {
-
+//		System.out.println("ì¬ê·€2");
 		if (node.left != null) {
 			traversalPostorder(node.left, result);
 		}
@@ -110,7 +111,7 @@ public class LinkedTree<E> {
 			traversalPostorder(node.right, result);
 		}
 		
-		result.add(node.data);   //result´Â List<E> ¸Å°³º¯¼ö È®ÀÎ!!
+		result.add(node.data);   //resultëŠ” List<E> ë§¤ê°œë³€ìˆ˜ í™•ì¸!!
 		System.out.println("LinkedTree.java result : " +result);
 		
 
